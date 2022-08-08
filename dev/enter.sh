@@ -1,9 +1,9 @@
 # shellcheck shell=bash
-if [ -e "$PWD/poetry.lock" ] && [ -n "$(type -P poetry)" ] && [ -n "$(type -P pre-commit)" ]; then
+if [ -e "$PWD/poetry.lock" ] && [ -n "$(type -P poetry)" ] && [ -z "$(type -P pre-commit)" ]; then
   if poetry install; then
     poetry update
   fi
-elif [ -n "$(type -P poetry)" ] && [ -n "$(type -P pre-commit)" ]; then
+elif [ -n "$(type -P poetry)" ] && [ -z "$(type -P pre-commit)" ]; then
   poetry update
 fi
 hash -r
