@@ -1,0 +1,83 @@
+[tool.poetry]
+name = "example"
+version = "0.1.0"
+description = "Sample project with tools configured"
+authors = ["Eric Villasenor <eric.villasenor@intel.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+PyYAML = "^5.4.1"
+click = "^7.1.2"
+arrow = "^1.0.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+hypothesis = "^6.14.0"
+Sphinx = "^4.0.2"
+sphinx-rtd-theme = "^0.5.2"
+black = "^21.6b0"
+pylint = "^2.14.5"
+coverage = {version = "^5.5", extras = ["toml"]}
+isort = "^5.8.0"
+rstcheck = "^3.3.1"
+pre-commit = "^2.13.0"
+gitlint = "^0.15.1"
+releases = "^1.6.3"
+
+[tool.poetry.scripts]
+greet = "example.greet:greet"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  | dev
+  | docs
+)/
+'''
+
+# needs version >= 5
+[tool.isort]
+profile = "black"
+src_paths = ['example', 'test']
+
+[tool.pylint.master]
+ignore-paths = ["doc"]
+
+[tool.pylint.messages_control]
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--color=yes -ra -q"
+testpaths = [
+  "test",
+]
+
+[tool.coverage.run]
+branch = true
+omit = [
+  "*/test/*",
+  "*/.env/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:",
+]
+
+[tool.coverage.html]
+directory = "reports"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

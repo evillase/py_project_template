@@ -1,0 +1,13 @@
+# miniconda development environment
+name: py_proj_template
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - poetry
+  - python=3.8.2
+  - pip
+  - go-shfmt=3.3.0
+  - shellcheck=0.6.0
+  - ghp-import=2.0.1

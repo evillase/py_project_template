@@ -1,0 +1,72 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+# needs poetry to run
+fail_fast: true
+repos:
+- repo: local
+  hooks:
+    - id: dev-requirements
+      name: Requirements Development
+      entry: poetry export --without-hashes --dev --output dev/requirements.txt
+      always_run: true
+      pass_filenames: false
+      language: system
+      stages: [commit]
+    - id: shellcheck
+      name: shell lint
+      description: bash file linter
+      entry: shellcheck -x
+      language: system
+      types: [shell]
+      exclude_types: [csh]
+      stages: [commit]
+    - id: isort
+      name: isort
+      entry: isort --filter-files
+      language: python
+      language_version: python3
+      require_serial: true
+      types_or: [cython, pyi, python]
+      stages: [commit]
+    - id: black
+      name: black
+      entry: black
+      language: python
+      language_version: python3
+      require_serial: true
+      types_or: [python, pyi]
+      stages: [commit]
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: python
+      language_version: python3
+      require_serial: true
+      types_or: [python, pyi]
+      stages: [commit]
+    - id: rstcheck
+      name: rst lint
+      description: rst file linter
+      entry: rstcheck
+      language: system
+      types: [rst]
+      stages: [commit]
+    - id: sphinx-build
+      name: build docs
+      description: project documentation build
+      entry: sphinx-build -M html 'doc' 'doc/_build'
+      language: system
+      pass_filenames: false
+      types: [rst]
+      stages: [commit]
+    - id: gitlint
+      name: gitlint
+      description: lint git commit messages
+      entry: gitlint
+      language: python
+      args: [--staged, --msg-filename]
+      stages: [commit-msg]
+
+# issues   gitlint needs 1 commit to function - https://github.com/jorisroovers/gitlint/issues/189
+# Fix: when no commits edit git.py to 'branch', '--show-current' if git is 2.22.0 or newer
