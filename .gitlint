@@ -3,4 +3,4 @@ contrib=contrib-title-conventional-commits
 ignore=body-is-missing
 
 [contrib-title-conventional-commits]
-types = fix,feat,refactor,docs
+types = fix,feat,refactor,docs,chore
