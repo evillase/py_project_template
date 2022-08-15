@@ -46,6 +46,10 @@ src_paths = ['example', 'test']
 [tool.pylint.master]
 ignore-paths = ["doc"]
 
+[tool.pylint.main]
+argument-rgx = '[a-z_][a-z0-9_]{0,30}$'
+variable-rgx = '[a-z_][a-z0-9_]{0,30}$'
+
 [tool.pylint.messages_control]
 
 [tool.pylint.format]

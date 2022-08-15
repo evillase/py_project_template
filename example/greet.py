@@ -9,7 +9,7 @@ import click
 @click.argument("tz")
 @click.option("--repeat", "-r", default=1, type=int)
 @click.option("--interval", "-i", default=3, type=int)
-def greet(tz, repeat=1, interval=3):  # pylint: disable=C0103
+def greet(tz, repeat=1, interval=3):
     """Parse a timezone and greet a location a number of times."""
     for i in range(repeat):
         if i > 0:  # no delay needed on first round
