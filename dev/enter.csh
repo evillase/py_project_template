@@ -1,13 +1,17 @@
-if ( -e $PWD/poetry.lock && "`where poetry`" != "" && "`where pre-commit`" == "" ) then
+#
+## tcsh/csh script when entering conda virtual env
+
+# install pyproject environemnt and project
+if ( "`where poetry`" != "" ) then
   poetry install
-  if ( $? ) then
-    poetry update
-  endif
-else if ( "`where  poetry`" != "" && "`where pre-commit`" == "" ) then
-  poetry update
+else
+  echo "Error: No poetry here."
 endif
+
+# update shell
 rehash
 
+# install pre-commit hooks
 if ( $?git_root ) then
   if ( "`where pre-commit`" != "" ) then
     if ( ! -e "$git_root/.git/hooks/commit-msg" ) then

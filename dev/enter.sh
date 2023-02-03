@@ -1,13 +1,17 @@
 # shellcheck shell=bash
-if [ -e "$PWD/poetry.lock" ] && [ -n "$(type -P poetry)" ] && [ -z "$(type -P pre-commit)" ]; then
-  if poetry install; then
-    poetry update
-  fi
-elif [ -n "$(type -P poetry)" ] && [ -z "$(type -P pre-commit)" ]; then
-  poetry update
+## bash script when entering conda virtual env
+
+# install pyproject environment and project
+if [ -n "$(type -P poetry)" ]; then
+  poetry install
+else
+  echo "Error: No poetry here."
 fi
+
+# update shell
 hash -r
 
+# install pre-commit hooks
 # shellcheck disable=SC2154 # variables exist in environment
 if [ -n "$git_root" ]; then
   if [ -n "$(type -P pre-commit)" ]; then
