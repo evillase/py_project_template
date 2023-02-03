@@ -1,11 +1,11 @@
 # miniconda development environment
 name: py_proj_template
 channels:
-  - defaults
   - conda-forge
+  - nodefaults
 
 dependencies:
-  - poetry
+  - conda-forge::poetry=1.3
   - python=3.8.2
   - pip
   - go-shfmt=3.3.0
