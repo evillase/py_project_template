@@ -52,7 +52,7 @@ repos:
     - id: sphinx-build
       name: build docs
       description: project documentation build
-      entry: sphinx-build -M html 'doc' 'doc/_build'
+      entry: sphinx-build -M html 'docs' 'docs/_build'
       language: system
       pass_filenames: false
       types: [rst]
