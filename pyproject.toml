@@ -5,8 +5,8 @@ description = "Sample project with tools configured"
 authors = ["Eric Villasenor <eric.villasenor@intel.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-PyYAML = "^5.4.1"
+python = "~3.10"
+PyYAML = "^6.0.1"
 click = "^7.1.2"
 arrow = "^1.0.3"
 
@@ -23,6 +23,8 @@ rstcheck = "^3.3.1"
 pre-commit = "^2.13.0"
 gitlint = "^0.15.1"
 releases = "^1.6.3"
+urllib3 = "^1"
+pylint-pytest = "^1.1.2"
 
 [tool.poetry.scripts]
 greet = "example.greet:greet"
@@ -44,11 +46,14 @@ profile = "black"
 src_paths = ['example', 'test']
 
 [tool.pylint.master]
-ignore-paths = ["doc"]
+ignore-paths = ["docs"]
 
 [tool.pylint.main]
 argument-rgx = '[a-z_][a-z0-9_]{0,30}$'
 variable-rgx = '[a-z_][a-z0-9_]{0,30}$'
+load-plugins = [
+  "pylint_pytest",
+]
 
 [tool.pylint.messages_control]
 
