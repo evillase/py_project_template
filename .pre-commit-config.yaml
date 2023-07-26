@@ -24,24 +24,21 @@ repos:
     - id: isort
       name: isort
       entry: isort --filter-files
-      language: python
-      language_version: python3
+      language: system
       require_serial: true
       types_or: [cython, pyi, python]
       stages: [commit]
     - id: black
       name: black
       entry: black
-      language: python
-      language_version: python3
+      language: system
       require_serial: true
       types_or: [python, pyi]
       stages: [commit]
     - id: pylint
       name: pylint
       entry: pylint
-      language: python
-      language_version: python3
+      language: system
       require_serial: true
       types_or: [python, pyi]
       stages: [commit]
@@ -64,9 +61,10 @@ repos:
       name: gitlint
       description: lint git commit messages
       entry: gitlint
-      language: python
+      language: system
       args: [--staged, --msg-filename]
       stages: [commit-msg]
 
 # issues   gitlint needs 1 commit to function - https://github.com/jorisroovers/gitlint/issues/189
 # Fix: when no commits edit git.py to 'branch', '--show-current' if git is 2.22.0 or newer
+# venv fix: https://stackoverflow.com/questions/70778806/pre-commit-not-using-virtual-environment
