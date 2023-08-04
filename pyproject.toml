@@ -2,7 +2,7 @@
 name = "example"
 version = "0.1.0"
 description = "Sample project with tools configured"
-authors = ["Eric Villasenor <eric.villasenor@intel.com>"]
+authors = [" Yourname Here <yourname.here@email.com>"]
 
 [tool.poetry.dependencies]
 python = "~3.10"
@@ -10,7 +10,7 @@ PyYAML = "^6.0.1"
 click = "^7.1.2"
 arrow = "^1.0.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^6.2"
 hypothesis = "^6.14.0"
 Sphinx = "^4.0.2"
@@ -25,6 +25,7 @@ gitlint = "^0.15.1"
 releases = "^1.6.3"
 urllib3 = "^1"
 pylint-pytest = "^1.1.2"
+ruff = "^0.0.282"
 
 [tool.poetry.scripts]
 greet = "example.greet:greet"
@@ -39,6 +40,37 @@ extend-exclude = '''
   | docs
 )/
 '''
+
+[tool.ruff]
+select = ["E", "F"]
+ignore = []
+
+fixable = ["ALL"]
+unfixable = []
+
+
+src = ["example", "test"]
+
+exclude = [
+  ".direnv",
+  ".eggs",
+  ".env",
+  ".git",
+  ".git-rewrite",
+  ".mypy_cache",
+  ".pytype",
+  ".ruff_cache",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "build",
+  "dist",
+  "docs",
+]
+
+format = "pylint"
+
 
 # needs version >= 5
 [tool.isort]

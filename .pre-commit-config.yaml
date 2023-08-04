@@ -21,12 +21,20 @@ repos:
       types: [shell]
       exclude_types: [csh]
       stages: [commit]
+    - id: ruff
+      name: ruff
+      entry: ruff check
+      language: system
+      args: [--fix, --exit-non-zero-on-fix]
+      require_serial: true
+      types_or: [cython, python, pyi]
+      stages: [commit]
     - id: isort
       name: isort
       entry: isort --filter-files
       language: system
       require_serial: true
-      types_or: [cython, pyi, python]
+      types_or: [cython, python, pyi]
       stages: [commit]
     - id: black
       name: black
