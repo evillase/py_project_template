@@ -1,16 +1,20 @@
 # Example python project template
-You must start a conda environment to do development within this template.
-This template uses conda to install some shell tools, and poetry to install everything else.
-Poetry is used to manage the python project.
+This template relies on poetry to manage python dependencies.
+A conda environment.yml to do development is provided within this template.
+It will install python poetry and some shell tools for development.
+You may bootstrap your environment any way you like.
 
-Please rename example to your python library and you will also need to modify the pyproject.toml file.
+
+Please rename example and modify the pyproject.toml file.
 
 ## Folders
- dev - development environment files
- example - your python project
+ dev - development environment and script files
+ example - your python project - please rename it
  test - pytest files for your project
- doc - documentation in rst files
+ docs - documentation in rst files
 
 ## Files
  pyproject.toml - project definition file
+ .pre-commit.yaml - configuration for pre-commit rules
+ .gitlint - configuration for git message linting rules
 
